@@ -30,14 +30,12 @@ color: #fff;
 
 const Home = () => {
     const dispatch = useDispatch();
+    const products = useSelector( state => state.products );
 
     // GET PRODUCTS WITH REDUX
     useEffect( () => {
         dispatch( getProducts() );
     }, [] );
-
-    const products = useSelector( state => state );
-    console.log( products )
 
     return (
         <HomeContainer>
