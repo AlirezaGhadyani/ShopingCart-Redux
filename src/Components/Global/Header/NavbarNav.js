@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { IoCartOutline } from 'react-icons/io5';
 import { FaTimesCircle } from 'react-icons/fa';
 import { NavbarBtn } from './Navbar';
+import { useSelector } from 'react-redux';
 
 // STYLES
 const NavWrapper = styled.ul`
@@ -117,6 +118,9 @@ font-family: Quicksand;
 `;
 
 const NavbarNav = ( { toggleNav, setToggleNav } ) => {
+
+    const totalQty = useSelector( state => state.cart.totalQty );
+
     return (
         <NavWrapper expand={toggleNav ? '0' : '-100%'}>
             <li>
@@ -132,7 +136,7 @@ const NavbarNav = ( { toggleNav, setToggleNav } ) => {
                 <Link to="/Cart">
                     <NavbarBtn>
                         <IoCartOutline />
-                        <QtySpan>0</QtySpan>
+                        <QtySpan>{totalQty}</QtySpan>
                     </NavbarBtn>
                     <span className="cart-text">سبد خرید</span>
                 </Link>

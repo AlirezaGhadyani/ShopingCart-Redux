@@ -8,6 +8,11 @@ const initialState = {
         item: {},
         loading: false,
         error: null
+    },
+    cart: {
+        items: [],
+        totalQty: 0,
+        totalPrice: 0
     }
 };
 
@@ -63,10 +68,52 @@ export const singleProductReducer = ( state = initialState.singleProduct, { type
             };
         case "REMOVE_SINGLE_PRODUCT":
             return {
+                ...state,
                 item: {},
                 loading: false,
                 error: null
             };
         default: return state
     };
+};
+
+// CART REDUCER
+export const cartReducer = ( state = initialState.cart, { type, payload } ) => {
+    switch ( type ) {
+        case "ADD_PRODUCT_TO_CART":
+            return {
+                ...state,
+                items: [{ ...payload, qty: 1 }, ...state.items]
+            };
+        // case "INCREASE_TOTAL_QTY":
+        //     return {
+        //         ...state,
+        //         totalQty: state.totalQty + 1
+        //     };
+        // case "DECREASE_TOTAL_QTY":
+        //     return {
+        //         ...state,
+        //         totalQty: state.totalQty - 1
+        //     };
+        case "GET_TOTAL_QTY":
+            return {
+                ...state,
+                totalQty: state.items.length !== 0 ?
+                    state.items
+                        .map( item => item.qty )
+                        .reduce( ( acc, curr ) => acc + curr )
+                    : 0
+            };
+        case "GET_TOTAL_PRICE":
+            return {
+                ...state,
+                totalPrice: payload
+            };
+        case "REMOVE_CART_ITEM":
+            return {
+                ...state,
+                items: state.items.filter( item => item.id !== payload )
+            };
+        default: return state;
+    }
 };

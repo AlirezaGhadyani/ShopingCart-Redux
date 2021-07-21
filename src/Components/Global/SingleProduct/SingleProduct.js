@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProduct, removeSingleProduct } from '../../../Redux/Actions';
+import { getProduct, removeSingleProduct, addToCart } from '../../../Redux/Actions';
 import { ProductsMessage } from '../../Pages/HomePage/Home';
 import { AddCartBtn } from '../../Pages/HomePage/Product';
 
@@ -22,13 +22,19 @@ display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: space-between;
+@media (max-width:768px){
+    flex-direction: column;
+}
 `;
 
 const ProductImageWrapper = styled.div`
-width: 320px;
+width: 580px;
 display: flex;
 justify-content: center;
 align-items: center;
+@media (max-width:768px){
+    width: 20rem;
+}
 `;
 
 const ProductImage = styled.img`
@@ -36,13 +42,18 @@ width: 100%;
 `;
 
 const ProductInfoWrapper = styled.div`
-width: calc(1920px - 320px);
+width: calc(1920px - 680px);
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: flex-end;
 font-family: Quicksand;
 padding: 0 2rem 0 0;
+@media (max-width:768px){
+    width: 100%;
+    padding: 0;
+    margin: 2rem 0;
+}
 `;
 
 const ProductTitle = styled.p`
@@ -57,6 +68,9 @@ font-size: 1.3rem;
 font-weight: 700;
 color: #7f8c8d;
 direction: ltr;
+@media (max-width:882px){
+    font-size: 1.1rem;
+}
 `;
 
 const ProductPriceCatWrapper = styled.div`
@@ -66,6 +80,12 @@ flex-direction: row;
 justify-content: space-between;
 align-items: center;
 margin: 2rem 0 1rem 0;
+@media (max-width:882px){
+    margin: 1rem 0 0.2rem 0;
+}
+@media (max-width:768px){
+    margin: 2rem 0 1rem 0;
+}
 `;
 
 const ProductPriceBadge = styled.span`
@@ -90,6 +110,11 @@ const SingleProduct = ( { match } ) => {
         }
     }, [] );
 
+    // HANDLE ADD TO CART
+    const handleAddToCart = ( product ) => {
+        dispatch( addToCart( product ) );
+    };
+
     const { category: cat, description: desc, image, title, price } = product.item;
 
     return (
@@ -104,18 +129,18 @@ const SingleProduct = ( { match } ) => {
                         <ProductImageWrapper>
                             <ProductImage src={image} />
                         </ProductImageWrapper>
-                    </ProductWrapper >
 
-                    <ProductInfoWrapper>
-                        <ProductTitle>{title}</ProductTitle>
-                        <ProductDesc>{desc}</ProductDesc>
-                        <ProductPriceCatWrapper>
-                            <ProductPriceBadge>{`$${price}`}</ProductPriceBadge>
-                            <ProductPriceBadge>{cat}</ProductPriceBadge>
-                        </ProductPriceCatWrapper>
-                        <AddCartBtn font="2rem" padd="0.6rem">اضافه به سبد خرید</AddCartBtn>
-                    </ProductInfoWrapper>
-                </ProductContainer >
+                        <ProductInfoWrapper>
+                            <ProductTitle>{title}</ProductTitle>
+                            <ProductDesc>{desc}</ProductDesc>
+                            <ProductPriceCatWrapper>
+                                <ProductPriceBadge>{`$${price}`}</ProductPriceBadge>
+                                <ProductPriceBadge>{cat}</ProductPriceBadge>
+                            </ProductPriceCatWrapper>
+                            <AddCartBtn font="2rem" padd="0.6rem" onClick={() => handleAddToCart( product.item )}>اضافه به سبد خرید</AddCartBtn>
+                        </ProductInfoWrapper>
+                    </ProductWrapper>
+                </ProductContainer>
             )}
         </>
     )

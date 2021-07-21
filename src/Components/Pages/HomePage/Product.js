@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, getTotalPrice, getTotalQty } from '../../../Redux/Actions';
 
 // STYLES
 const ProductCard = styled.div`
@@ -73,6 +75,22 @@ cursor: pointer;
 
 const Product = ( { product } ) => {
     const { image, title, price, category: cat, id } = product;
+    const dispatch = useDispatch();
+
+    const cartItems = useSelector( state => state.cart.items );
+    const existItem = cartItems.filter( item => item.id === product.id );
+    // HANDLE ADD TO CART
+    const handleAddToCart = ( product ) => {
+        // CHECK IF PRODUCT EXIST
+        if ( existItem.length < 1 )
+            dispatch( addToCart( product ) );
+        else {
+            existItem[0].qty += 1
+        }
+
+        dispatch( getTotalQty() );
+    };
+
     return (
         <ProductCard>
             <Link to={`/${id}product`}>
@@ -87,9 +105,9 @@ const Product = ( { product } ) => {
                 <PriceCatBadge>{`$ ${price}`}</PriceCatBadge>
                 <PriceCatBadge>{cat}</PriceCatBadge>
             </CardPricCatWrapper>
-            <AddCartBtn font="1.6rem" padd="0.4rem">اضافه به سبد خرید</AddCartBtn>
+            <AddCartBtn font="1.6rem" padd="0.4rem" onClick={() => handleAddToCart( product )}>اضافه به سبد خرید</AddCartBtn>
         </ProductCard>
     )
 }
 
-export default Product
+export default Product;

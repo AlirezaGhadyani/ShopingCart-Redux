@@ -34,3 +34,44 @@ export const removeSingleProduct = () => {
         type: "REMOVE_SINGLE_PRODUCT"
     };
 };
+
+// ADD TO CART
+export const addToCart = ( product ) => {
+    return {
+        type: "ADD_PRODUCT_TO_CART",
+        payload: product
+    };
+};
+
+// GET TOTAL QTY
+export const getTotalQty = () => {
+    return {
+        type: "GET_TOTAL_QTY"
+    };
+}
+
+// // INCREASE TOTAL QTY CART
+// export const increaseTotalQty = () => {
+//     return { type: "INCREASE_TOTAL_QTY" };
+// };
+
+// // DECREASE TOTAL QTY CART
+// export const decreaseTotalQty = () => {
+//     return { type: "DECREASE_TOTAL_QTY" };
+// };
+
+// GET TOTAL PRICE
+export const getTotalPrice = ( price ) => {
+    return {
+        type: "GET_TOTAL_PRICE",
+        payload: price
+    };
+};
+
+// REMOVE CART ITEM
+export const removeCartItem = ( itemId ) => {
+    return {
+        type: "REMOVE_CART_ITEM",
+        payload: itemId
+    };
+};
