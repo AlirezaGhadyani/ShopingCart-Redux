@@ -5,6 +5,7 @@ import Header from './Components/Global/Header/Header';
 import Home from './Components/Pages/HomePage/Home';
 import SingleProduct from './Components/Global/SingleProduct/SingleProduct'
 import Cart from './Components/Pages/CartPage/Cart';
+import PurchaseSteps from './Components/Global/PurchaseSteps/PurchaseSteps';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />\
-        <Route path="/Cart" component={Cart} />
+        <Route exact path="/Cart" component={Cart} />
+        <Route path="/Cart/PurchaseSteps" component={PurchaseSteps} />
         <Route path="/:product" component={SingleProduct} />
       </Switch>
     </Router>

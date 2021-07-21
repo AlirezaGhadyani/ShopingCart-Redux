@@ -13,9 +13,11 @@ const initialState = {
         items: [],
         totalQty: 0,
         totalPrice: 0
-    }
+    },
+    userStepInfo: []
 };
 
+// PRODUCTS REDUCER
 export const productsReducer = ( state = initialState.homeProducts, { type, payload } ) => {
     switch ( type ) {
         case "FETCHING_PRODUCTS":
@@ -43,6 +45,7 @@ export const productsReducer = ( state = initialState.homeProducts, { type, payl
     }
 };
 
+// SINGLE PRODUCT REDUCER
 export const singleProductReducer = ( state = initialState.singleProduct, { type, payload } ) => {
     switch ( type ) {
         case "FETCHING_SINGLE_PRODUCT":
@@ -85,16 +88,6 @@ export const cartReducer = ( state = initialState.cart, { type, payload } ) => {
                 ...state,
                 items: [{ ...payload, qty: 1 }, ...state.items]
             };
-        // case "INCREASE_TOTAL_QTY":
-        //     return {
-        //         ...state,
-        //         totalQty: state.totalQty + 1
-        //     };
-        // case "DECREASE_TOTAL_QTY":
-        //     return {
-        //         ...state,
-        //         totalQty: state.totalQty - 1
-        //     };
         case "GET_TOTAL_QTY":
             return {
                 ...state,
@@ -115,5 +108,17 @@ export const cartReducer = ( state = initialState.cart, { type, payload } ) => {
                 items: state.items.filter( item => item.id !== payload )
             };
         default: return state;
+    }
+};
+
+// USER STEP INFO REDUCER
+export const userStepInfoReducer = ( state = initialState.userStepInfo, { type, payload } ) => {
+    switch ( type ) {
+        case "GET_USER_STEP_INFORMATION":
+            return {
+                ...state,
+                payload
+            };
+        default: return state
     }
 };

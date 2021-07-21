@@ -50,16 +50,6 @@ export const getTotalQty = () => {
     };
 }
 
-// // INCREASE TOTAL QTY CART
-// export const increaseTotalQty = () => {
-//     return { type: "INCREASE_TOTAL_QTY" };
-// };
-
-// // DECREASE TOTAL QTY CART
-// export const decreaseTotalQty = () => {
-//     return { type: "DECREASE_TOTAL_QTY" };
-// };
-
 // GET TOTAL PRICE
 export const getTotalPrice = ( price ) => {
     return {
@@ -75,3 +65,11 @@ export const removeCartItem = ( itemId ) => {
         payload: itemId
     };
 };
+
+// GET USER STEP INFORMATION
+export const getUserStepInfo = ( info ) => {
+    return {
+        type: "GET_USER_STEP_INFORMATION",
+        payload: info
+    };
+}

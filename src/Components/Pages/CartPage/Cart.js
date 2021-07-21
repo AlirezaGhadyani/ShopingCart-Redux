@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import { getTotalPrice } from '../../../Redux/Actions';
@@ -68,14 +69,16 @@ font-weight: 600;
 
 const CartFinalBuyBtn = styled.button`
 background: #ff4757;
-color: #fff;
 border: 0;
 border-radius: 0.4rem;
 padding: 0.6rem 2rem;
+cursor: pointer;
+& a{
 font-size: 1.6rem;
 font-family: faFont;
 font-weight: 700;
-cursor: pointer;
+color: #fff;
+}
 `;
 
 const CartItemWrapper = styled.section`
@@ -114,7 +117,9 @@ const Cart = () => {
                         ) )}
                     </CartItemWrapper>
                     <CartStatusWrapper>
-                        <CartFinalBuyBtn>نهایی کردن خرید</CartFinalBuyBtn>
+                        <CartFinalBuyBtn>
+                            <Link to="/Cart/PurchaseSteps">نهایی کردن خرید</Link>
+                        </CartFinalBuyBtn>
                         <CartStatusTxt>تعداد کل : <span>{totalQty}</span></CartStatusTxt>
                         <CartStatusTxt>قیمت کل : <span>{`${totalPrice.toFixed( 2 )}$`}</span></CartStatusTxt>
                     </CartStatusWrapper>
