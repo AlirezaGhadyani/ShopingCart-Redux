@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProduct } from '../../../Redux/Actions';
+import { getProduct, removeSingleProduct } from '../../../Redux/Actions';
+import { ProductsMessage } from '../../Pages/HomePage/Home';
 import { AddCartBtn } from '../../Pages/HomePage/Product';
 
 // STYLES
@@ -80,32 +81,43 @@ const SingleProduct = ( { match } ) => {
     const productId = match.params.product.slice( 0, match.params.product.indexOf( 'p' ) );
     const dispatch = useDispatch();
     const product = useSelector( state => state.singleProduct );
-    console.log( product )
+
     // FETCH SELECTED PRODUCT
     useEffect( () => {
         dispatch( getProduct( productId ) );
+        return () => {
+            dispatch( removeSingleProduct() );
+        }
     }, [] );
 
     const { category: cat, description: desc, image, title, price } = product.item;
 
     return (
-        <ProductContainer>
-            <ProductWrapper>
-                <ProductImageWrapper>
-                    <ProductImage src={image} />
-                </ProductImageWrapper>
-            </ProductWrapper>
+        <>
+            {product.loading ? (
+                <ProductsMessage>در حال بارگذاری...</ProductsMessage>
+            ) : product.error ? (
+                <ProductsMessage>بارگذاری با مشکل مواجه شد !</ProductsMessage>
+            ) : (
+                <ProductContainer>
+                    <ProductWrapper>
+                        <ProductImageWrapper>
+                            <ProductImage src={image} />
+                        </ProductImageWrapper>
+                    </ProductWrapper >
 
-            <ProductInfoWrapper>
-                <ProductTitle>{title}</ProductTitle>
-                <ProductDesc>{desc}</ProductDesc>
-                <ProductPriceCatWrapper>
-                    <ProductPriceBadge>{price}</ProductPriceBadge>
-                    <ProductPriceBadge>{cat}</ProductPriceBadge>
-                </ProductPriceCatWrapper>
-                <AddCartBtn font="2rem" padd="0.6rem">اضافه به سبد خرید</AddCartBtn>
-            </ProductInfoWrapper>
-        </ProductContainer>
+                    <ProductInfoWrapper>
+                        <ProductTitle>{title}</ProductTitle>
+                        <ProductDesc>{desc}</ProductDesc>
+                        <ProductPriceCatWrapper>
+                            <ProductPriceBadge>{`$${price}`}</ProductPriceBadge>
+                            <ProductPriceBadge>{cat}</ProductPriceBadge>
+                        </ProductPriceCatWrapper>
+                        <AddCartBtn font="2rem" padd="0.6rem">اضافه به سبد خرید</AddCartBtn>
+                    </ProductInfoWrapper>
+                </ProductContainer >
+            )}
+        </>
     )
 }
 

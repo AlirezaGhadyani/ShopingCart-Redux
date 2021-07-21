@@ -14,7 +14,7 @@ justify-content: center;
 align-items: center;
 `;
 
-const ProductsMessage = styled.p`
+export const ProductsMessage = styled.p`
 font-size: 3rem;
 font-weight: 700;
 text-align: center;

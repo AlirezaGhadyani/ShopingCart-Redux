@@ -26,4 +26,11 @@ export const getProduct = ( productID ) => async ( dispatch, getState ) => {
         // ACTION FAILURE FETCH
         dispatch( { type: "FETCHING_SINGLE_PRODUCT_FAILURE", paylocd: error } );
     }
-}
+};
+
+// SINGLE PRODUCT REMOVE ACTION
+export const removeSingleProduct = () => {
+    return {
+        type: "REMOVE_SINGLE_PRODUCT"
+    };
+};

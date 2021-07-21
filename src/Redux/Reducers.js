@@ -61,6 +61,12 @@ export const singleProductReducer = ( state = initialState.singleProduct, { type
                 loading: false,
                 error: payload
             };
+        case "REMOVE_SINGLE_PRODUCT":
+            return {
+                item: {},
+                loading: false,
+                error: null
+            };
         default: return state
     };
 };
