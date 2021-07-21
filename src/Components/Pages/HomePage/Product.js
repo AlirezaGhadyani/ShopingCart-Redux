@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, getTotalPrice, getTotalQty } from '../../../Redux/Actions';
+import { addToCart, getTotalQty } from '../../../Redux/Actions';
 
 // STYLES
 const ProductCard = styled.div`
@@ -79,6 +79,7 @@ const Product = ( { product } ) => {
 
     const cartItems = useSelector( state => state.cart.items );
     const existItem = cartItems.filter( item => item.id === product.id );
+
     // HANDLE ADD TO CART
     const handleAddToCart = ( product ) => {
         // CHECK IF PRODUCT EXIST

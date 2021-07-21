@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProduct, removeSingleProduct, addToCart } from '../../../Redux/Actions';
+import { getProduct, removeSingleProduct, addToCart, getTotalQty } from '../../../Redux/Actions';
 import { ProductsMessage } from '../../Pages/HomePage/Home';
 import { AddCartBtn } from '../../Pages/HomePage/Product';
 
@@ -110,9 +110,19 @@ const SingleProduct = ( { match } ) => {
         }
     }, [] );
 
+    const cartItems = useSelector( state => state.cart.items );
+    const existItem = cartItems.filter( item => item.id === product.item.id );
+
     // HANDLE ADD TO CART
     const handleAddToCart = ( product ) => {
-        dispatch( addToCart( product ) );
+        // CHECK IF PRODUCT EXIST
+        if ( existItem.length < 1 )
+            dispatch( addToCart( product ) );
+        else {
+            existItem[0].qty += 1
+        }
+
+        dispatch( getTotalQty() );
     };
 
     const { category: cat, description: desc, image, title, price } = product.item;
