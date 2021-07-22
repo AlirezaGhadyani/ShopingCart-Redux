@@ -79,7 +79,7 @@ const Step2 = ( { setStep } ) => {
                             name="mobile"
                             type="tel" />
                         <ConfirmStepWrapper>
-                            <button>
+                            <button type="submit">
                                 بعدی
                             </button>
                             <button onClick={() => setStep( {

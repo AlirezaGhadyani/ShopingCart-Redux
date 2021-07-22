@@ -35,6 +35,7 @@ const Home = () => {
     // GET PRODUCTS WITH REDUX
     useEffect( () => {
         dispatch( getProducts() );
+        // eslint-disable-next-line
     }, [] );
 
     return (

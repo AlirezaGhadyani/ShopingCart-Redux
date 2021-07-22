@@ -41,7 +41,7 @@ color: #e31e24;
 `;
 
 const TextField = ( { ...props } ) => {
-    const [field, meta] = useField( props );
+    const [field] = useField( props );
     return (
         <TextFieldWrapper>
             <TextFildInp {...field} {...props} />

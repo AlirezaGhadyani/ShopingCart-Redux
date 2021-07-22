@@ -103,8 +103,9 @@ const Cart = () => {
                 .map( item => item.price * item.qty )
                 .reduce( ( acc, curr ) => acc + curr );
             dispatch( getTotalPrice( totalPrice ) );
+            // eslint-disable-next-line
         }
-    }, [totalQty] );
+    }, [totalQty, cart.items, dispatch] );
 
     return (
         <CartContainer>

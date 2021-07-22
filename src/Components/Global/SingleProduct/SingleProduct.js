@@ -105,10 +105,12 @@ const SingleProduct = ( { match } ) => {
     // FETCH SELECTED PRODUCT
     useEffect( () => {
         dispatch( getProduct( productId ) );
+        // eslint-disable-next-line
         return () => {
             dispatch( removeSingleProduct() );
+            // eslint-disable-next-line
         }
-    }, [] );
+    } );
 
     const cartItems = useSelector( state => state.cart.items );
     const existItem = cartItems.filter( item => item.id === product.item.id );
@@ -125,7 +127,7 @@ const SingleProduct = ( { match } ) => {
         dispatch( getTotalQty() );
     };
 
-    const { category: cat, description: desc, image, title, price } = product.item;
+    const { category: cat, description: desc, image, title, price, id } = product.item;
 
     return (
         <>
@@ -137,7 +139,7 @@ const SingleProduct = ( { match } ) => {
                 <ProductContainer>
                     <ProductWrapper>
                         <ProductImageWrapper>
-                            <ProductImage src={image} />
+                            <ProductImage src={image} alt={`product number ${id}`} />
                         </ProductImageWrapper>
 
                         <ProductInfoWrapper>

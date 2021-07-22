@@ -102,6 +102,7 @@ const CartItem = ( { itemData } ) => {
             dispatch( removeCartItem( id ) );
             dispatch( getTotalQty() );
         }
+        // eslint-disable-next-line
     }, [itemQty] );
 
     // HANDLE REMOVE ITEM

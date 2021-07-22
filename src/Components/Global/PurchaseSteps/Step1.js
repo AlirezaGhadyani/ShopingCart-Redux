@@ -111,7 +111,7 @@ const Step1 = ( { setStep } ) => {
                 {CartItems.items.map( item => (
                     <CartListItem key={item.id}>
                         <span>{`${item.qty} عدد`}</span>
-                        <img src={item.image} />
+                        <img src={item.image} alt={`product number ${item.id}`} />
                         <p>{item.title.length > 20 ? `${item.title.slice( 0, 25 )}...` : item.title}</p>
                         <span>{`${( item.price * item.qty ).toFixed( 2 )} $`}</span>
                     </CartListItem>

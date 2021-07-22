@@ -54,7 +54,7 @@ padding: 1rem;
 }
 `;
 
-const Step3 = ( { setStep, setShowModal } ) => {
+const Step3 = ( { setStep } ) => {
     const [showMessage, setShowMessage] = useState( false );
     const [selected, setSelected] = useState( 'نحوه ارسال را انتخاب کنید' );
     const userInfo = useSelector( state => state.userInfo.userStepInfo );
