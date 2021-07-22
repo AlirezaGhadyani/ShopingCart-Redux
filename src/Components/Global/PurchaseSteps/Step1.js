@@ -94,10 +94,20 @@ margin: 2rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width:768px){
+        width: 100%;
+        margin: 0.6rem 0;
+        padding: 0.6rem 2rem;
+}
     :hover{
         box-shadow: 0 10px 15px rgba(0,0,0,0.3);
         transition: box-shadow 0.5s ease;
     }
+}
+
+@media (max-width:768px){
+    flex-direction: column;
+    justify-content: center;
 }
 `;
 

@@ -26,6 +26,16 @@ background: #ff4757;
 padding: 1rem 4rem;
 border-radius: 0.5rem;
 color: #fff;
+@media (max-width:768px){
+font-size: 2.4rem;
+padding: 0.6rem 2.4rem;
+}
+@media (max-width:565px){
+width: 90%;
+font-size: 1.8rem;
+padding: 0.4rem 1.8rem;
+}
+
 `;
 
 const Home = () => {

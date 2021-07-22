@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { VscThreeBars } from 'react-icons/vsc';
 import { FaRegUserCircle } from 'react-icons/fa';
 import NavbarNav from './NavbarNav';
+import NavbarUserNav from './NavbarUserNav';
 
 // STYLES
 const NavbarWrapper = styled.nav`
@@ -51,6 +52,7 @@ align-items: center;
 
 const Navbar = () => {
     const [toggleNav, setToggleNav] = useState( false );
+    const [toggleUserNav, setToggleUserNav] = useState( false );
 
     return (
         <NavbarWrapper>
@@ -60,9 +62,12 @@ const Navbar = () => {
             <NavbarNav toggleNav={toggleNav} setToggleNav={setToggleNav} />
 
             <LeftSideWrapper>
-                <NavbarBtn>
+                <NavbarBtn onClick={() => setToggleUserNav( p => !p )}>
                     <FaRegUserCircle />
                 </NavbarBtn>
+                {toggleUserNav && (
+                    <NavbarUserNav />
+                )}
                 <Link to="/" className="main-logo">Lavalo</Link>
             </LeftSideWrapper>
         </NavbarWrapper>

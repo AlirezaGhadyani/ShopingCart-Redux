@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import { getTotalPrice } from '../../../Redux/Actions';
@@ -56,6 +56,10 @@ align-items: center;
 margin: 4rem 0;
 padding: 2rem 0;
 border-top: 2px solid #ff4757;
+@media (max-width:768px){
+    flex-direction: column;
+    justify-content: center;
+}
 `;
 
 const CartStatusTxt = styled.h2`
@@ -73,11 +77,14 @@ border: 0;
 border-radius: 0.4rem;
 padding: 0.6rem 2rem;
 cursor: pointer;
-& a{
 font-size: 1.6rem;
 font-family: faFont;
 font-weight: 700;
 color: #fff;
+@media (max-width:768px){
+    order: 3;
+    width: 100%;
+    margin: 1rem 0;
 }
 `;
 
@@ -91,6 +98,7 @@ align-items: center;
 
 const Cart = () => {
     const dispatch = useDispatch();
+    let history = useHistory();
 
     // GET CART ITEMS
     const cart = useSelector( state => state.cart );
@@ -118,8 +126,8 @@ const Cart = () => {
                         ) )}
                     </CartItemWrapper>
                     <CartStatusWrapper>
-                        <CartFinalBuyBtn>
-                            <Link to="/Cart/PurchaseSteps">نهایی کردن خرید</Link>
+                        <CartFinalBuyBtn onClick={() => history.push( '/Cart/PurchaseSteps' )}>
+                            نهایی کردن خرید
                         </CartFinalBuyBtn>
                         <CartStatusTxt>تعداد کل : <span>{totalQty}</span></CartStatusTxt>
                         <CartStatusTxt>قیمت کل : <span>{`${totalPrice.toFixed( 2 )}$`}</span></CartStatusTxt>

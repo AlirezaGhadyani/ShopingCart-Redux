@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import Step3Select from './Step3Select';
 import { ConfirmStepWrapper } from './Step1';
@@ -58,6 +59,7 @@ const Step3 = ( { setStep } ) => {
     const [showMessage, setShowMessage] = useState( false );
     const [selected, setSelected] = useState( 'نحوه ارسال را انتخاب کنید' );
     const userInfo = useSelector( state => state.userInfo.userStepInfo );
+    let history = useHistory();
 
     // HANDLE CLICK NEXT
     const handleClickNext = () => {
@@ -70,7 +72,10 @@ const Step3 = ( { setStep } ) => {
             pass3: true
         } );
         setShowMessage( true );
-        setInterval( () => setShowMessage( false ), 3000 );
+        setInterval( () => {
+            setShowMessage( false );
+            history.push( '/' );
+        }, 3000 );
     }
 
     return (

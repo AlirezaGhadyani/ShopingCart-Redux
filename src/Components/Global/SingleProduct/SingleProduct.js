@@ -110,7 +110,7 @@ const SingleProduct = ( { match } ) => {
             dispatch( removeSingleProduct() );
             // eslint-disable-next-line
         }
-    } );
+    }, [dispatch, productId] );
 
     const cartItems = useSelector( state => state.cart.items );
     const existItem = cartItems.filter( item => item.id === product.item.id );
