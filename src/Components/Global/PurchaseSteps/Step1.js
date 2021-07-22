@@ -20,6 +20,11 @@ justify-content: space-around;
 align-items: center;
 margin: 0.8rem 0;
 direction: ltr;
+@media (max-width:768px){
+    flex-direction: column;
+    margin: 2rem 0;
+    justify-content: center;
+}
 & span{
     font-size: 1.4rem;
     font-weight: 700;
@@ -30,17 +35,39 @@ direction: ltr;
     :last-child{
         font-family: Quicksand;
         margin-left: 2rem;
+        @media (max-width:768px){
+            margin-left: 0;
+    }
+    }
+    @media (max-width:768px){
+        width: 100%;
+        background: #fff;
+        border: 1px solid #ff4757;
+        color: #ff4757;
+        margin: 0.5rem 0;
+        padding: 0.5rem 0.8rem;
+        font-size: 2.2rem;
+        order: 3;
     }
 }
 & img{
     width: 4rem;
     margin: 0 2rem;
+    @media (max-width:768px){
+        width: 14rem;
+        max-width: 95%;
+    }
 }
 & p{
     font-size: 1.4rem;
     font-weight: 700;
     font-family: Quicksand;
     direction: ltr;
+    @media (max-width:768px){
+        margin: 1rem 0;
+        font-size: 2rem;
+        text-align: center;
+    }
 }
 `;
 

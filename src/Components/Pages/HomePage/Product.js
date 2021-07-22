@@ -71,6 +71,12 @@ padding: ${props => props.padd} 1.2rem;
 margin: 1rem 0 0 0;
 border-radius: 0.4rem;
 cursor: pointer;
+box-shadow: 0 0 15px rgba(0,0,0,0.3);
+transition: box-shadow 0.5s ease;
+:hover{
+        box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+        transition: box-shadow 0.5s ease;
+}
 `;
 
 const Product = ( { product } ) => {

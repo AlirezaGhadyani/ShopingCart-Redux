@@ -1,4 +1,4 @@
-import Reac, { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaCheckCircle } from 'react-icons/fa';
 import Step1 from './Step1';
@@ -24,6 +24,9 @@ justify-content: center;
 align-items: center;
 direction: ltr;
 margin: 2rem 0;
+@media (max-width:594px){
+    display: none;
+}
 `;
 
 const StepSection = styled.div`
@@ -39,6 +42,9 @@ align-items: center;
     font-size: 2rem;
     font-weight: 700;
     color: ${props => props.color};
+    @media (max-width:768px){
+    font-size: 1.6rem;
+}
 }
 `;
 
@@ -47,6 +53,13 @@ width: 14rem;
 height: 0.1rem;
 background: #cacaca;
 margin: 0 0.5rem 3rem 0;
+@media (max-width:968px){
+    width: 7rem;
+}
+@media (max-width:768px){
+    width: 5rem;
+    height: 0.12rem;
+}
 `;
 
 const PurchaseSteps = () => {

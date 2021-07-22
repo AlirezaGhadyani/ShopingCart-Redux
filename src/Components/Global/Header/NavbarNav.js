@@ -123,16 +123,16 @@ const NavbarNav = ( { toggleNav, setToggleNav } ) => {
 
     return (
         <NavWrapper expand={toggleNav ? '0' : '-100%'}>
-            <li>
+            <li onClick={() => setToggleNav( false )}>
                 <Link to="/">خانه</Link>
             </li>
-            <li>
+            <li onClick={() => setToggleNav( false )}>
                 <Link to="/AboutUs">درباره ما</Link>
             </li>
-            <li>
+            <li onClick={() => setToggleNav( false )}>
                 <Link to="/ContactUs">ارتباط باما</Link>
             </li>
-            <li>
+            <li onClick={() => setToggleNav( false )}>
                 <Link to="/Cart">
                     <NavbarBtn>
                         <IoCartOutline />

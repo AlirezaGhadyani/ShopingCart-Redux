@@ -14,7 +14,7 @@ const initialState = {
         totalQty: 0,
         totalPrice: 0
     },
-    userStepInfo: []
+    userInfo: []
 };
 
 // PRODUCTS REDUCER
@@ -112,12 +112,12 @@ export const cartReducer = ( state = initialState.cart, { type, payload } ) => {
 };
 
 // USER STEP INFO REDUCER
-export const userStepInfoReducer = ( state = initialState.userStepInfo, { type, payload } ) => {
+export const userStepInfoReducer = ( state = initialState.userInfo, { type, payload } ) => {
     switch ( type ) {
         case "GET_USER_STEP_INFORMATION":
             return {
                 ...state,
-                payload
+                userStepInfo: payload
             };
         default: return state
     }
